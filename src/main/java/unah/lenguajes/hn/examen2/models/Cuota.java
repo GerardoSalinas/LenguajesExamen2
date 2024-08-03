@@ -26,7 +26,7 @@ public class Cuota {
     private double interes;
 
     @Column(name="capital")
-    private long capital;
+    private double capital;
 
     @Column(name="saldo")
     private double saldo;

@@ -46,16 +46,15 @@ public class ClienteServicio {
                     cuotaAnterior.setInteres(0);
                     cuotaAnterior.setSaldo(prestamo.getMonto());
                     
-                    // for (int j = 1; j<plazo*12; j++){
-                    //     Cuota siguienteCuota = new Cuota();
-                    //     siguienteCuota.setMes(j);
-                    //     siguienteCuota.setInteres(cuotaAnterior.getSaldo()*i);
-                    //     siguienteCuota.setCapital(cuotaAnterior.getCapital());
-                    //     siguienteCuota.setPrestamo(prestamo);
-                    //     this.cuotaRepositorio.save(siguienteCuota);
-
-                    //     cuotaAnterior = siguienteCuota;
-                    // }
+                    for (int j = 1; j<plazo*12; j++){
+                        Cuota siguienteCuota = new Cuota();
+                        siguienteCuota.setMes(j);
+                        siguienteCuota.setInteres(cuotaAnterior.getSaldo()*i);
+                        siguienteCuota.setCapital(nvaCouta-siguienteCuota.getInteres());
+                        siguienteCuota.setSaldo(cuotaAnterior.getSaldo()-siguienteCuota.getCapital());
+                        this.cuotaRepositorio.save(siguienteCuota);
+                        cuotaAnterior = siguienteCuota;
+                    }
                 }
             }
             return cliente;
