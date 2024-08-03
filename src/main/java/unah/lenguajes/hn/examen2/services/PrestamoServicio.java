@@ -42,6 +42,7 @@ public class PrestamoServicio {
                 double nvaCouta = monto*i / 1 - Math.pow((1+i),plazo*12);
                 prestamo.setCuota(nvaCouta);
 
+                Prestamo nvoPrestamo = this.prestamoRepositorio.save(prestamo);
                 //genera cuotas
                 Cuota cuotaAnterior = new Cuota();
                     cuotaAnterior.setMes(0);
@@ -60,7 +61,7 @@ public class PrestamoServicio {
                         cuotaAnterior = siguienteCuota;
                     }
 
-                return this.prestamoRepositorio.save(prestamo);
+                return nvoPrestamo;
             }
         }
         return null;
